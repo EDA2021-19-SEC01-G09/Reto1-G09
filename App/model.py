@@ -63,6 +63,13 @@ def addVideo(catalog, video):
     #for cat in authors:
     #    addBookAuthor(catalog, author.strip(), book)
 
+def addCategoria(catalog, categoria):
+    """
+    Adiciona un tag a la lista de tags
+    """
+    t = newTag(tag['tag_name'], tag['tag_id'])
+    lt.addLast(catalog['tags'], t)
+
 # Funciones para creacion de datos
 
 # Funciones de consulta
