@@ -48,6 +48,7 @@ def loadData(catalog):
     """
     loadVideos(catalog)
     loadCategorias(catalog)
+    model.filtrarCategoria_1(catalog)
 
 def loadVideos(catalog):
     """
@@ -61,11 +62,18 @@ def loadVideos(catalog):
         model.addVideo(catalog, video)
 
 def loadCategorias(catalog):
-
+    """
     categoriasfile = cf.data_dir + 'category-id.csv'
     input_file = csv.DictReader(open(categoriasfile, encoding='utf-8'))
     for categoria in input_file:
         model.addCategoria(catalog, categoria)
+    """
+    with open(cf.data_dir + 'category-id.csv','r') as infile:
+        reader = csv.reader(infile, delimiter = '\t')
+        for row in reader:
+            id = row[0]
+            name = row[1]
+            model.addCategoria(catalog, name, id)
 
 
 # Funciones de ordenamiento

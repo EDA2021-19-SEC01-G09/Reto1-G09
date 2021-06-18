@@ -56,12 +56,12 @@ def addVideo(catalog, video):
     # Se adiciona el video a la lista de videos
     lt.addLast(catalog['videos'], video)
 
-def addCategoria(catalog, categoria):
+def addCategoria(catalog, name, id):
     """
     Adiciona un tag a la lista de tags
     """
-    #t = newCategoria(categoria['name'], categoria['id'])
-    lt.addLast(catalog['categorias'], categoria)
+    t = newCategoria(name, id)
+    lt.addLast(catalog['categorias'], t)
 
 # Funciones para creacion de datos
 
@@ -73,6 +73,10 @@ def newCategoria(name, id):
     categoria['name'] = name
     categoria['categoria_id'] = id
     return categoria
+
+def filtrarCategoria_1(catalog):
+    lt.removeFirst(catalog['categorias'])
+    
 
 # Funciones de consulta
 

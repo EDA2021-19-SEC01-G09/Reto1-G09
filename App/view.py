@@ -56,6 +56,13 @@ def loadData(catalog):
     """
     controller.loadData(catalog)
 
+def filtrarCatalogo(catalog):
+    newDict = dict()
+    for (key, value) in lt.firstElement(catalog['videos']).items():
+            # Check if key is even then add pair to new dictionary
+        if key in ['title', 'channel_title', 'trending_date', 'country', 'views', 'likes', 'dislikes']:
+                newDict[key] = value
+    return newDict
 
 catalog = None
 
@@ -72,17 +79,15 @@ while True:
         print("Cargando información de los archivos ....")
         catalog = initCatalog()
         loadData(catalog)
-        print('Libros cargados: ' + str(lt.size(catalog['videos'])))
-        print(lt.firstElement(catalog['videos']))
-        newDict = dict()
-        for (key, value) in lt.firstElement(catalog['videos']).items():
-            # Check if key is even then add pair to new dictionary
-            if key in ['title', 'channel_title', 'trending_date', 'country', 'views', 'likes', 'dislikes']:
-                newDict[key] = value
+
+        print('Videos cargados: ' + str(lt.size(catalog['videos'])))
+                
         print('Filtered Dictionary: ')
-        print(newDict)
+        print(filtrarCatalogo(catalog))
+
         print('Categorías cargadas: ')
-        print(catalog['categorias'])
+        print(catalog['categorias']['elements'])
+
 
     #elif int(inputs[0]) == 2:
         #pass
