@@ -37,7 +37,31 @@ los mismos.
 
 # Construccion de modelos
 
+def newCatalog():
+    """
+    Inicializa el catálogo de libros. Crea una lista vacia para guardar
+    todos los videos, adicionalmente, crea una lista vacia para los IDs de categorías
+    """
+    catalog = {'videos': None,
+               'categorias': None}
+
+    catalog['videos'] = lt.newList()
+    catalog['categorias'] = lt.newList('ARRAY_LIST'""",
+                                    cmpfunction=compareauthors""")
+
+    return catalog
+
 # Funciones para agregar informacion al catalogo
+
+def addVideo(catalog, video):
+    # Se adiciona el video a la lista de videos
+    lt.addLast(catalog['videos'], video)
+    # Se obtienen los autores del libro
+    #authors = book['authors'].split(",")
+    # Cada autor, se crea en la lista de libros del catalogo, y se
+    # crea un libro en la lista de dicho autor (apuntador al libro)
+    #for cat in authors:
+    #    addBookAuthor(catalog, author.strip(), book)
 
 # Funciones para creacion de datos
 

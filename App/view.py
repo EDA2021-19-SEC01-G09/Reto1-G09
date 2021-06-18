@@ -44,6 +44,19 @@ def printMenu():
 
 # InitCatalog (llama al modelo desde el controlador)
 # LoadData (Solo existe en controller y llama a otras funciones allí)
+def initCatalog():
+    """
+    Inicializa el catalogo de videos
+    """
+    return controller.initCatalog()
+
+def loadData(catalog):
+    """
+    Carga los videos en la estructura de datos
+    """
+    controller.loadData(catalog)
+
+
 catalog = None
 
 
