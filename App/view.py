@@ -42,11 +42,16 @@ def printMenu():
     print("4- Cargar vídeo con percepción sumamente positiva con más días siendo tendencia en función de categoría")
     print("5- Cargar vídeos con más comentarios en función de país y tag específico")
 
+# InitCatalog (llama al modelo desde el controlador)
+# LoadData (Solo existe en controller y llama a otras funciones allí)
 catalog = None
+
 
 """
 Menu principal
 """
+
+
 while True:
     printMenu()
     inputs = input('Seleccione una opción para continuar\n')
