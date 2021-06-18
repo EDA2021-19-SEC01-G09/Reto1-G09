@@ -46,8 +46,7 @@ def newCatalog():
                'categorias': None}
 
     catalog['videos'] = lt.newList()
-    catalog['categorias'] = lt.newList('ARRAY_LIST'""",
-                                    cmpfunction=compareauthors""")
+    catalog['categorias'] = lt.newList('ARRAY_LIST')
 
     return catalog
 
@@ -56,21 +55,24 @@ def newCatalog():
 def addVideo(catalog, video):
     # Se adiciona el video a la lista de videos
     lt.addLast(catalog['videos'], video)
-    # Se obtienen los autores del libro
-    #authors = book['authors'].split(",")
-    # Cada autor, se crea en la lista de libros del catalogo, y se
-    # crea un libro en la lista de dicho autor (apuntador al libro)
-    #for cat in authors:
-    #    addBookAuthor(catalog, author.strip(), book)
 
 def addCategoria(catalog, categoria):
     """
     Adiciona un tag a la lista de tags
     """
-    t = newTag(tag['tag_name'], tag['tag_id'])
-    lt.addLast(catalog['tags'], t)
+    #t = newCategoria(categoria['name'], categoria['id'])
+    lt.addLast(catalog['categorias'], categoria)
 
 # Funciones para creacion de datos
+
+def newCategoria(name, id):
+    """
+    Esta estructura almancena los tags utilizados para marcar libros.
+    """
+    categoria = {'name': '', 'categoria_id': ''}
+    categoria['name'] = name
+    categoria['categoria_id'] = id
+    return categoria
 
 # Funciones de consulta
 

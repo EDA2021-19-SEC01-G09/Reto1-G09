@@ -70,9 +70,22 @@ while True:
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
         print("Cargando información de los archivos ....")
+        catalog = initCatalog()
+        loadData(catalog)
+        print('Libros cargados: ' + str(lt.size(catalog['videos'])))
+        print(lt.firstElement(catalog['videos']))
+        newDict = dict()
+        for (key, value) in lt.firstElement(catalog['videos']).items():
+            # Check if key is even then add pair to new dictionary
+            if key in ['title', 'channel_title', 'trending_date', 'country', 'views', 'likes', 'dislikes']:
+                newDict[key] = value
+        print('Filtered Dictionary: ')
+        print(newDict)
+        print('Categorías cargadas: ')
+        print(catalog['categorias'])
 
-    elif int(inputs[0]) == 2:
-        pass
+    #elif int(inputs[0]) == 2:
+        #pass
 
     else:
         sys.exit(0)
