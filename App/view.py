@@ -37,7 +37,10 @@ operación solicitada
 def printMenu():
     print("Bienvenido")
     print("1- Cargar información en el catálogo")
-    print("2- ")
+    print("2- Cargar videos con más likes en función de país y categoría")
+    print("3- Cargar vídeo con percepción altamente positiva con más días siendo tendencia en función de país")
+    print("4- Cargar vídeo con percepción sumamente positiva con más días siendo tendencia en función de categoría")
+    print("5- Cargar vídeos con más comentarios en función de país y tag específico")
 
 catalog = None
 
