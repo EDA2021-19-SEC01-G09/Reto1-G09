@@ -39,8 +39,8 @@ los mismos.
 
 def newCatalog():
     """
-    Inicializa el catálogo de libros. Crea una lista vacia para guardar
-    todos los videos, adicionalmente, crea una lista vacia para los IDs de categorías
+    Inicializa el catálogo de videos. Crea una lista vacia para guardar
+    todos los videos, adicionalmente, crea una lista vacia para las categorías
     """
     catalog = {'videos': None,
                'categorias': None}
@@ -63,6 +63,7 @@ def addCategoria(catalog, categoria):
     lt.addLast(catalog['categorias'], categoria)
 
 # Funciones para creacion de datos
+
 
 
     

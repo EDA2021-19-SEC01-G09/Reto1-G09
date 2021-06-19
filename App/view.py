@@ -57,12 +57,24 @@ def loadData(catalog):
     controller.loadData(catalog)
 
 def filtrarCatalogo(catalog):
+    """
+    filtra el primer video 
+    """
     newDict = dict()
     for (key, value) in lt.firstElement(catalog['videos']).items():
             # Check if key is even then add pair to new dictionary
         if key in ['title', 'channel_title', 'trending_date', 'country', 'views', 'likes', 'dislikes']:
                 newDict[key] = value
     return newDict
+
+def iterarCategorias(catalog):
+    """
+    Imprime todas las cateregorías en forma de diccionario en diferentes lineas
+    """
+    for x in range(1, lt.size(catalog['categorias'])):
+        categoria = lt.getElement(catalog['categorias'], x)
+        print(categoria)
+
 
 catalog = None
 
@@ -86,7 +98,7 @@ while True:
         print(filtrarCatalogo(catalog))
 
         print('Categorías cargadas: ')
-        print(catalog['categorias']['elements'])
+        iterarCategorias(catalog)
 
 
     #elif int(inputs[0]) == 2:

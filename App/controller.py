@@ -52,9 +52,7 @@ def loadData(catalog):
 
 def loadVideos(catalog):
     """
-    Carga los libros del archivo.  Por cada libro se toman sus autores y por
-    cada uno de ellos, se crea en la lista de autores, a dicho autor y una
-    referencia al libro que se esta procesando.
+    Carga los videos del archivo.  
     """
     videosfile = cf.data_dir + 'videos-small.csv'
     input_file = csv.DictReader(open(videosfile, encoding='utf-8'))
@@ -62,7 +60,9 @@ def loadVideos(catalog):
         model.addVideo(catalog, video)
 
 def loadCategorias(catalog):
-
+    """
+    Carga las Categorías
+    """
     categoriasfile = cf.data_dir + 'category-id.csv'
     input_file = csv.DictReader(open(categoriasfile, encoding='utf-8'), delimiter = '\t')
     for categoria in input_file:
