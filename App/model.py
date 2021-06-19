@@ -56,26 +56,15 @@ def addVideo(catalog, video):
     # Se adiciona el video a la lista de videos
     lt.addLast(catalog['videos'], video)
 
-def addCategoria(catalog, name, id):
+def addCategoria(catalog, categoria):
     """
     Adiciona un tag a la lista de tags
     """
-    t = newCategoria(name, id)
-    lt.addLast(catalog['categorias'], t)
+    lt.addLast(catalog['categorias'], categoria)
 
 # Funciones para creacion de datos
 
-def newCategoria(name, id):
-    """
-    Esta estructura almancena los tags utilizados para marcar libros.
-    """
-    categoria = {'name': '', 'categoria_id': ''}
-    categoria['name'] = name
-    categoria['categoria_id'] = id
-    return categoria
 
-def filtrarCategoria_1(catalog):
-    lt.removeFirst(catalog['categorias'])
     
 
 # Funciones de consulta
