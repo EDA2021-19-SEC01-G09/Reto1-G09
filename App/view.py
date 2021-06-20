@@ -75,6 +75,14 @@ def iterarCategorias(catalog):
         categoria = lt.getElement(catalog['categorias'], x)
         print(categoria)
 
+def buscarCountry(catalog, country):
+    # Se consulta si el país existe en la base de datos
+    for x in range(1, lt.size(catalog['videos'])):
+        if lt.getElement(catalog['videos'], x)['country'] == country:
+            return True
+        else:
+            return False
+
 
 catalog = None
 
@@ -101,8 +109,18 @@ while True:
         iterarCategorias(catalog)
 
 
-    #elif int(inputs[0]) == 2:
-        #pass
+    elif int(inputs[0]) == 2:
+        category_name = input('Ingrese la categoría deseada: ')
+        if controller.buscarCategoria(catalog, category_name) == True:
+            country = input('Ingrese el país deseado: ')
+            if buscarCountry(catalog, country) == True:
+                n_videos = int(input('Ingrese el número de videos que quiere listar: '))
+            else:
+                print('El país no existe')
+        else:
+            print('La categoría ingresada no existe')
+
+        print('Cargando información de videos con más likes...')
 
     else:
         sys.exit(0)

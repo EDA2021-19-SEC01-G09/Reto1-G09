@@ -69,6 +69,9 @@ def loadCategorias(catalog):
         c_categoria = {k:v.strip() for k, v in categoria.items()}
         model.addCategoria(catalog, c_categoria)
 
+def buscarCategoria(catalog, categoria):
+    cat = model.buscarCategoria(catalog, categoria)
+    return cat
 
 # Funciones de ordenamiento
 

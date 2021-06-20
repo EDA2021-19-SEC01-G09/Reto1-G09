@@ -46,7 +46,7 @@ def newCatalog():
                'categorias': None}
 
     catalog['videos'] = lt.newList()
-    catalog['categorias'] = lt.newList('ARRAY_LIST')
+    catalog['categorias'] = lt.newList('ARRAY_LIST', cmpfunction = compararCategorias)
 
     return catalog
 
@@ -64,12 +64,24 @@ def addCategoria(catalog, categoria):
 
 # Funciones para creacion de datos
 
-
+def buscarCategoria(catalog, categoria):
+    """
+    Retorna un autor con sus libros a partir del nombre del autor
+    """
+    if lt.isPresent(catalog['categorias'], categoria) > 0:
+        return True
+    else:
+        return False
 
     
 
 # Funciones de consulta
 
 # Funciones utilizadas para comparar elementos dentro de una lista
+
+def compararCategorias(categoria1, categoria):
+    if categoria1.lower() in categoria['name'].lower():
+        return 0
+    return -1
 
 # Funciones de ordenamiento
