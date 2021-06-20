@@ -66,7 +66,8 @@ def loadCategorias(catalog):
     categoriasfile = cf.data_dir + 'category-id.csv'
     input_file = csv.DictReader(open(categoriasfile, encoding='utf-8'), delimiter = '\t')
     for categoria in input_file:
-        model.addCategoria(catalog, categoria)
+        c_categoria = {k:v.strip() for k, v in categoria.items()}
+        model.addCategoria(catalog, c_categoria)
 
 
 # Funciones de ordenamiento
