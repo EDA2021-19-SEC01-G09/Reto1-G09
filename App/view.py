@@ -44,7 +44,7 @@ def printMenu():
 
 # InitCatalog (llama al modelo desde el controlador)
 # LoadData (Solo existe en controller y llama a otras funciones allí)
-def initCatalog():
+def initCatalog(tipo_lista):
     """
     Inicializa el catalogo de videos
     """
@@ -83,6 +83,17 @@ def buscarCountry(catalog, country):
         else:
             return False
 
+def decision_tipo_lista(tipo_lista):
+    try:
+    if tipo_lista == 1:
+        return (True, 'ARRAY_LIST')
+    elif tipo_lista == 2:
+        return (True, 'SINGLE_LINKED' )
+    except:
+        print("Ese tipo no es válido, por favor vuelva a introducir el número")
+        return 
+    
+
 
 catalog = None
 
@@ -96,8 +107,10 @@ while True:
     printMenu()
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
+        tipo_lista = input("Ingrese 1 para cargar los datos en un arreglo y 2 para una lista encadenada: ")
+        tipo_lista = decision_tipo_lista(tipo_lista)
         print("Cargando información de los archivos ....")
-        catalog = initCatalog()
+        catalog = initCatalog(tipo_lista)
         loadData(catalog)
 
         print('Videos cargados: ' + str(lt.size(catalog['videos'])))

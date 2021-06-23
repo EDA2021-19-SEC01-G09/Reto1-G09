@@ -38,17 +38,19 @@ los mismos.
 # Construccion de modelos
 
 def newCatalog():
-    """
-    Inicializa el catálogo de videos. Crea una lista vacia para guardar
-    todos los videos, adicionalmente, crea una lista vacia para las categorías
-    """
-    catalog = {'videos': None,
-               'categorias': None}
+    if tipo_lista == 1:
+        """
+        Inicializa el catálogo de videos. Crea una lista vacia para guardar
+        todos los videos, adicionalmente, crea una lista vacia para las categorías
+        """
+        catalog = {'videos': None,
+                'categorias': None}
 
-    catalog['videos'] = lt.newList()
-    catalog['categorias'] = lt.newList('ARRAY_LIST', cmpfunction = compararCategorias)
+        catalog['videos'] = lt.newList()
+        catalog['categorias'] = lt.newList('ARRAY_LIST', cmpfunction = compararCategorias)
+    elif tipo_lista == 2:
 
-    return catalog
+        return catalog
 
 # Funciones para agregar informacion al catalogo
 
