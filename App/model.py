@@ -83,6 +83,7 @@ def buscarCategoria(catalog, categoria):
 
 # Funciones de consulta
 
+
 # Funciones utilizadas para comparar elementos dentro de una lista
 
 def compararCategorias(categoria1, categoria):

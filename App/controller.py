@@ -73,6 +73,8 @@ def buscarCategoria(catalog, categoria):
     cat = model.buscarCategoria(catalog, categoria)
     return cat
 
+
+
 # Funciones de ordenamiento
 
 def sortVideos(catalog, n_videos, tipo_sort):
