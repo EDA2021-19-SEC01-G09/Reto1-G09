@@ -29,6 +29,8 @@ import config as cf
 import time
 from DISClib.ADT import list as lt
 from DISClib.Algorithms.Sorting import shellsort as sa
+from DISClib.Algorithms.Sorting import selectionsort as sn
+from DISClib.Algorithms.Sorting import insertionsort as nn
 
 assert cf
 
@@ -100,11 +102,28 @@ def cmpVideosByLikes(video1, video2):
 
     # Funciones de ordenamiento
 
-    def sortVideos(catalog, size, tipo_sort):
-    sub_list = lt.subList(catalog['videos'], 1, size)
-    sub_list = sub_list.copy()
-    start_time = time.process_time()
-    sorted_list = sa.sort(sub_list, cmpVideosByLikes)
-    stop_time = time.process_time()
-    elapsed_time_mseg = (stop_time - start_time)*1000
-    return elapsed_time_mseg, sorted_list
+def sortVideos(catalog, size, tipo_sort):
+    if tipo_sort == 1:      
+        sub_list = lt.subList(catalog['videos'], 1, size)
+        sub_list = sub_list.copy()
+        start_time = time.process_time()
+        sorted_list = sn.sort(sub_list, cmpVideosByLikes)
+        stop_time = time.process_time()
+        elapsed_time_mseg = (stop_time - start_time)*1000
+        return elapsed_time_mseg, sorted_list
+    elif tipo_sort == 2:      
+        sub_list = lt.subList(catalog['videos'], 1, size)
+        sub_list = sub_list.copy()
+        start_time = time.process_time()
+        sorted_list = nn.sort(sub_list, cmpVideosByLikes)
+        stop_time = time.process_time()
+        elapsed_time_mseg = (stop_time - start_time)*1000
+        return elapsed_time_mseg, sorted_list
+    elif tipo_sort == 3:      
+        sub_list = lt.subList(catalog['videos'], 1, size)
+        sub_list = sub_list.copy()
+        start_time = time.process_time()
+        sorted_list = sa.sort(sub_list, cmpVideosByLikes)
+        stop_time = time.process_time()
+        elapsed_time_mseg = (stop_time - start_time)*1000
+        return (elapsed_time_mseg, sorted_list)

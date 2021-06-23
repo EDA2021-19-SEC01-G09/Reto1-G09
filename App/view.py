@@ -75,6 +75,15 @@ def iterarCategorias(catalog):
         categoria = lt.getElement(catalog['categorias'], x)
         print(categoria)
 
+def iterarOrg(lista):
+    """
+    Imprime todas las cateregorías en forma de diccionario en diferentes lineas
+    """
+    for x in range(1, lt.size(lista[1])):
+        y = lt.getElement(lista[1], x)
+        print(y)
+
+
 def buscarCountry(catalog, country):
     # Se consulta si el país existe en la base de datos
     for x in range(1, lt.size(catalog['videos'])):
@@ -129,6 +138,8 @@ while True:
                 n_videos = int(input('Ingrese el número de videos que quiere listar: '))
                 tipo_sort = int(input('Ingrese 1 para selection, 2 para insertion y 3 para shell: '))
                 result = controller.sortVideos(catalog, n_videos, tipo_sort)
+                print(result)
+
             else:
                 print('El país no existe')
         else:
@@ -136,13 +147,8 @@ while True:
 
         print('Cargando información de videos con más likes...')
 
-    elif int(inputs[0]) == 3:
-        size = input("Indique tamaño de la muestra: ")
-        result = controller.sortBooks(catalog, int(size))
-        print("Para la muestra de", size, " elementos, el tiempo (mseg) es: ",
-                                          str(result[0]))
-        printResults(result[1])
-
     else:
         sys.exit(0)
 sys.exit(0)
+
+#Commit 10:48
