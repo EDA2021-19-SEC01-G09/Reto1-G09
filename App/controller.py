@@ -31,11 +31,11 @@ El controlador se encarga de mediar entre la vista y el modelo.
 
 # Inicialización del Catálogo de libros
 
-def initCatalog():
+def initCatalog(tipo_lista):
     """
     Llama la funcion de inicializacion del catalogo del modelo.
     """
-    catalog = model.newCatalog()
+    catalog = model.newCatalog(tipo_lista)
     return catalog
 
 
@@ -74,5 +74,11 @@ def buscarCategoria(catalog, categoria):
     return cat
 
 # Funciones de ordenamiento
+
+def sortVideos(catalog, n_videos, tipo_sort):
+    """
+    Ordena los videos por likes
+    """ 
+    return model.sortVideos(catalog, n_videos, tipo_sort)
 
 # Funciones de consulta sobre el catálogo

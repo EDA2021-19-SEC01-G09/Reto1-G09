@@ -48,7 +48,7 @@ def initCatalog(tipo_lista):
     """
     Inicializa el catalogo de videos
     """
-    return controller.initCatalog()
+    return controller.initCatalog(tipo_lista)
 
 def loadData(catalog):
     """
@@ -84,14 +84,13 @@ def buscarCountry(catalog, country):
             return False
 
 def decision_tipo_lista(tipo_lista):
-    try:
+    
     if tipo_lista == 1:
         return (True, 'ARRAY_LIST')
     elif tipo_lista == 2:
         return (True, 'SINGLE_LINKED' )
-    except:
-        print("Ese tipo no es válido, por favor vuelva a introducir el número")
-        return 
+    else:
+        return (False, "Ese tipo no es válido, por favor vuelva a introducir el número")
     
 
 
@@ -107,20 +106,20 @@ while True:
     printMenu()
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
-        tipo_lista = input("Ingrese 1 para cargar los datos en un arreglo y 2 para una lista encadenada: ")
+        tipo_lista = int(input("Ingrese 1 para cargar los datos en un arreglo y 2 para una lista encadenada: "))
         tipo_lista = decision_tipo_lista(tipo_lista)
-        print("Cargando información de los archivos ....")
-        catalog = initCatalog(tipo_lista)
-        loadData(catalog)
 
-        print('Videos cargados: ' + str(lt.size(catalog['videos'])))
-                
-        print('Filtered Dictionary: ')
-        print(filtrarCatalogo(catalog))
-
-        print('Categorías cargadas: ')
-        iterarCategorias(catalog)
-
+        if tipo_lista[0] == True:
+            print("Cargando información de los archivos ....")
+            catalog = initCatalog(tipo_lista[1])
+            loadData(catalog)
+            print('Videos cargados: ' + str(lt.size(catalog['videos']))) 
+            print('Filtered Dictionary: ')
+            print(filtrarCatalogo(catalog))
+            print('Categorías cargadas: ')
+            iterarCategorias(catalog)
+        elif tipo_lista[0] == False:
+            print(tipo_lista[1])
 
     elif int(inputs[0]) == 2:
         category_name = input('Ingrese la categoría deseada: ')
@@ -128,12 +127,21 @@ while True:
             country = input('Ingrese el país deseado: ')
             if buscarCountry(catalog, country) == True:
                 n_videos = int(input('Ingrese el número de videos que quiere listar: '))
+                tipo_sort = int(input('Ingrese 1 para selection, 2 para insertion y 3 para shell: '))
+                result = controller.sortVideos(catalog, n_videos, tipo_sort)
             else:
                 print('El país no existe')
         else:
             print('La categoría ingresada no existe')
 
         print('Cargando información de videos con más likes...')
+
+    elif int(inputs[0]) == 3:
+        size = input("Indique tamaño de la muestra: ")
+        result = controller.sortBooks(catalog, int(size))
+        print("Para la muestra de", size, " elementos, el tiempo (mseg) es: ",
+                                          str(result[0]))
+        printResults(result[1])
 
     else:
         sys.exit(0)
