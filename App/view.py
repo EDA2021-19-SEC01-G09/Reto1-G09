@@ -141,6 +141,7 @@ while True:
             country = input('Ingrese el país deseado: ')
             if buscarCountry(catalog, country) == True:
                 listaFiltrada = controller.filtrarRequerimiento1(catalog, id, country)
+                print("Se cargaron ", lt.size(listaFiltrada))
                 n_videos = int(input('Ingrese el número de videos que quiere listar: '))
                 if n_videos > lt.size(listaFiltrada):
                     print('La sublista deseada excede el número de elementos cargados. Por favor ingresar otro valor.')
