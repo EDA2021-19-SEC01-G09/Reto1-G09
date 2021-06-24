@@ -148,7 +148,7 @@ while True:
                     tipo_sort = int(input('Ingrese 1 para selection, 2 para insertion y 3 para shell: '))
                     result = controller.sortVideos(listaFiltrada, n_videos, tipo_sort)
                     print('Cargando información de videos con más likes...')
-                    print(result[1] + str('se cargaron en un tiempo de: ' + result[0]))
+                    print(str(result[1]) + str('se cargaron en un tiempo de: ') + str(result[0]))
             else:
                 print('El país no existe')
         else:
