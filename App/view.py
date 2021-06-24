@@ -101,7 +101,11 @@ def decision_tipo_lista(tipo_lista):
     else:
         return (False, "Ese tipo no es válido, por favor vuelva a introducir el número")
     
-
+def obtenerIdCategoria(catalog, category_name):
+    for i in range(0, lt.size(catalog['categorias'])):
+        categoriaDada = lt.getElement(catalog['categorias'], i)
+        if category_name == categoriaDada['name']:
+            return categoriaDada['id']
 
 catalog = None
 
@@ -133,22 +137,23 @@ while True:
     elif int(inputs[0]) == 2:
         category_name = input('Ingrese la categoría deseada: ')
         if controller.buscarCategoria(catalog, category_name) == True:
+            id = obtenerIdCategoria(catalog, category_name)
             country = input('Ingrese el país deseado: ')
             if buscarCountry(catalog, country) == True:
+                listaFiltrada = controller.filtrarRequerimiento1(catalog, id, country)
                 n_videos = int(input('Ingrese el número de videos que quiere listar: '))
-                tipo_sort = int(input('Ingrese 1 para selection, 2 para insertion y 3 para shell: '))
-                result = controller.sortVideos(catalog, n_videos, tipo_sort)
-                print(result)
-
+                if n_videos > lt.size(listaFiltrada):
+                    print('La sublista deseada excede el número de elementos cargados. Por favor ingresar otro valor.')
+                else:
+                    tipo_sort = int(input('Ingrese 1 para selection, 2 para insertion y 3 para shell: '))
+                    result = controller.sortVideos(listaFiltrada, n_videos, tipo_sort)
+                    print('Cargando información de videos con más likes...')
+                    print(result[1] + str('se cargaron en un tiempo de: ' + result[0]))
             else:
                 print('El país no existe')
         else:
             print('La categoría ingresada no existe')
 
-        print('Cargando información de videos con más likes...')
-
     else:
         sys.exit(0)
 sys.exit(0)
-
-#Commit 10:48

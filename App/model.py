@@ -79,7 +79,14 @@ def buscarCategoria(catalog, categoria):
     else:
         return False
 
-    
+def filtrarRequerimiento1(catalog, categoria, country):
+    listaFiltrada = lt.newList()
+    for i in range(0, lt.size(catalog['videos'])):
+        elementos = lt.getElement(catalog['videos'], i)
+        if elementos['category_id'] == categoria and elementos['country'] == country:
+            lt.addLast(listaFiltrada, elementos)
+    return listaFiltrada
+
 
 # Funciones de consulta
 
@@ -104,27 +111,16 @@ def cmpVideosByLikes(video1, video2):
     # Funciones de ordenamiento
 
 def sortVideos(catalog, size, tipo_sort):
+    sub_list = lt.subList(catalog, 1, size)
+    sub_list = sub_list.copy()
+    start_time = time.process_time()
     if tipo_sort == 1:      
-        sub_list = lt.subList(catalog['videos'], 1, size)
-        sub_list = sub_list.copy()
-        start_time = time.process_time()
         sorted_list = sn.sort(sub_list, cmpVideosByLikes)
-        stop_time = time.process_time()
-        elapsed_time_mseg = (stop_time - start_time)*1000
-        return elapsed_time_mseg, sorted_list
     elif tipo_sort == 2:      
-        sub_list = lt.subList(catalog['videos'], 1, size)
-        sub_list = sub_list.copy()
-        start_time = time.process_time()
         sorted_list = nn.sort(sub_list, cmpVideosByLikes)
-        stop_time = time.process_time()
-        elapsed_time_mseg = (stop_time - start_time)*1000
-        return elapsed_time_mseg, sorted_list
     elif tipo_sort == 3:      
-        sub_list = lt.subList(catalog['videos'], 1, size)
-        sub_list = sub_list.copy()
-        start_time = time.process_time()
         sorted_list = sa.sort(sub_list, cmpVideosByLikes)
-        stop_time = time.process_time()
-        elapsed_time_mseg = (stop_time - start_time)*1000
-        return (elapsed_time_mseg, sorted_list)
+
+    stop_time = time.process_time()
+    elapsed_time_mseg = (stop_time - start_time)*1000
+    return (elapsed_time_mseg, sorted_list)

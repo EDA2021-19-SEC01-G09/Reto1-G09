@@ -73,6 +73,8 @@ def buscarCategoria(catalog, categoria):
     cat = model.buscarCategoria(catalog, categoria)
     return cat
 
+def filtrarRequerimiento1(catalog, categoria, country):
+    return model.filtrarRequerimiento1(catalog, categoria, country)
 
 
 # Funciones de ordenamiento
