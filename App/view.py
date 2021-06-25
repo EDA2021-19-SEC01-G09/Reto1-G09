@@ -135,25 +135,27 @@ while True:
             print(tipo_lista[1])
 
     elif int(inputs[0]) == 2:
-        category_name = input('Ingrese la categoría deseada: ')
-        if controller.buscarCategoria(catalog, category_name) == True:
-            id = obtenerIdCategoria(catalog, category_name)
-            country = input('Ingrese el país deseado: ')
-            if buscarCountry(catalog, country) == True:
-                listaFiltrada = controller.filtrarRequerimiento1(catalog, id, country)
-                print("Se cargaron ", lt.size(listaFiltrada))
-                n_videos = int(input('Ingrese el número de videos que quiere listar: '))
-                if n_videos > lt.size(listaFiltrada):
-                    print('La sublista deseada excede el número de elementos cargados. Por favor ingresar otro valor.')
-                else:
-                    tipo_sort = int(input('Ingrese 1 para selection, 2 para insertion y 3 para shell: '))
-                    result = controller.sortVideos(listaFiltrada, n_videos, tipo_sort)
-                    print('Cargando información de videos con más likes...')
-                    print(str(result[1]) + str('se cargaron en un tiempo de: ') + str(result[0]))
-            else:
-                print('El país no existe')
+        #category_name = input('Ingrese la categoría deseada: ')
+        #if controller.buscarCategoria(catalog, category_name) == True:
+        #    id = obtenerIdCategoria(catalog, category_name)
+        #    country = input('Ingrese el país deseado: ')
+        #    if buscarCountry(catalog, country) == True:
+        #        listaFiltrada = controller.filtrarRequerimiento1(catalog, id, country)
+        #        print("Se cargaron ", lt.size(listaFiltrada))
+        #else:
+        #    print('El país no existe')
+        #else:
+        #    print('La categoría ingresada no existe')
+        
+        n_videos = int(input('Ingrese el número de videos que quiere listar: '))
+        if n_videos > lt.size(catalog['videos']):
+            print('La sublista deseada excede el número de elementos cargados. Por favor ingresar otro valor.')
         else:
-            print('La categoría ingresada no existe')
+            tipo_sort = int(input('Ingrese 1 para selection, 2 para insertion y 3 para shell: '))
+            result = controller.sortVideos(catalog['videos'], n_videos, tipo_sort)
+            print('Cargando información de videos con más likes...')
+            print('Se cargaron en un tiempo de: ' + str(result[0]) + " ms")
+
 
     else:
         sys.exit(0)

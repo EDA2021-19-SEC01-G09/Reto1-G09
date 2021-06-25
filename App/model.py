@@ -120,7 +120,6 @@ def sortVideos(catalog, size, tipo_sort):
         sorted_list = nn.sort(sub_list, cmpVideosByLikes)
     elif tipo_sort == 3:      
         sorted_list = sa.sort(sub_list, cmpVideosByLikes)
-
     stop_time = time.process_time()
     elapsed_time_mseg = (stop_time - start_time)*1000
-    return (elapsed_time_mseg, sorted_list)
+    return (round(elapsed_time_mseg, 2), sorted_list)
