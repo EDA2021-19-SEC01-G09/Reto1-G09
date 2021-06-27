@@ -151,7 +151,7 @@ while True:
         if n_videos > lt.size(catalog['videos']):
             print('La sublista deseada excede el número de elementos cargados. Por favor ingresar otro valor.')
         else:
-            tipo_sort = int(input('Ingrese 1 para selection, 2 para insertion y 3 para shell: '))
+            tipo_sort = int(input('Ingrese 1 para selection, 2 para insertion, 3 para shell, 4 para quick y 5 para merge: '))
             result = controller.sortVideos(catalog['videos'], n_videos, tipo_sort)
             print('Cargando información de videos con más likes...')
             print('Se cargaron en un tiempo de: ' + str(result[0]) + " ms")
