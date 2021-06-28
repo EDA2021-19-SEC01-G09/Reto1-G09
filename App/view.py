@@ -25,6 +25,12 @@ import sys
 import controller
 from DISClib.ADT import list as lt
 assert cf
+import sys
+
+
+default_limit = 1000
+sys.setrecursionlimit(default_limit*10)
+
 
 
 """
