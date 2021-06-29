@@ -89,6 +89,21 @@ def filtrarRequerimiento1(catalog, categoria, country):
             lt.addLast(listaFiltrada, elementos)
     return listaFiltrada
 
+def filtrarRequerimiento3(catalog, categoria):
+    listaFiltrada = lt.newList()
+    for i in range(0, lt.size(catalog['videos'])):
+        elementos = lt.getElement(catalog['videos'], i)
+        likes = int(elementos['likes'])
+        dislikes = int(elementos['dislikes'])
+        if dislikes == 0:
+            dislikes = 1
+        if elementos['category_id'] == categoria:
+            if elementos['dislikes'] 
+            if int(elementos['likes']) / int(elementos['dislikes']) > 20:
+                elementos['frec'] = 1
+                lt.addLast(listaFiltrada, elementos)
+    return listaFiltrada
+
 
 # Funciones de consulta
 
@@ -107,7 +122,7 @@ def cmpVideosByLikes(video1, video2):
         video1: informacion del primer video que incluye su valor 'likes'
         video2: informacion del segundo video que incluye su valor 'likes'
     """
-    if (int(video1['likes']) < int(video2['likes'])):
+    if (int(video1['likes']) > int(video2['likes'])):
         return True
 
     # Funciones de ordenamiento

@@ -54,7 +54,7 @@ def loadVideos(catalog):
     """
     Carga los videos del archivo.  
     """
-    videosfile = cf.data_dir + 'videos-large.csv'
+    videosfile = cf.data_dir + 'videos-small.csv'
     input_file = csv.DictReader(open(videosfile, encoding='utf-8'))
     for video in input_file:
         model.addVideo(catalog, video)
@@ -75,6 +75,9 @@ def buscarCategoria(catalog, categoria):
 
 def filtrarRequerimiento1(catalog, categoria, country):
     return model.filtrarRequerimiento1(catalog, categoria, country)
+
+def filtrarRequerimiento3(catalog, categoria):
+    return model.filtrarRequerimiento3(catalog, categoria)
 
 
 # Funciones de ordenamiento

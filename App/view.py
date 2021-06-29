@@ -138,28 +138,41 @@ while True:
             print(tipo_lista[1])
 
     elif int(inputs[0]) == 2:
-        #category_name = input('Ingrese la categoría deseada: ')
-        #if controller.buscarCategoria(catalog, category_name) == True:
-        #    id = obtenerIdCategoria(catalog, category_name)
-        #    country = input('Ingrese el país deseado: ')
-        #    if buscarCountry(catalog, country) == True:
-        #        listaFiltrada = controller.filtrarRequerimiento1(catalog, id, country)
-        #        print("Se cargaron ", lt.size(listaFiltrada))
-        #else:
-        #    print('El país no existe')
-        #else:
-        #    print('La categoría ingresada no existe')
-        
-        n_videos = int(input('Ingrese el número de videos que quiere listar: '))
-        if n_videos > lt.size(catalog['videos']):
-            print('La sublista deseada excede el número de elementos cargados. Por favor ingresar otro valor.')
+        category_name = input('Ingrese la categoría deseada: ')
+        if controller.buscarCategoria(catalog, category_name) == True:
+            id = obtenerIdCategoria(catalog, category_name)
+            country = input('Ingrese el país deseado: ')
+            if buscarCountry(catalog, country) == True:
+                listaFiltrada = controller.filtrarRequerimiento1(catalog, id, country)
+                print("Se cargaron ", lt.size(listaFiltrada))
+                n_videos = int(input('Ingrese el número de videos que quiere listar: '))
+                if n_videos > lt.size(listaFiltrada):
+                    print('La sublista deseada excede el número de elementos cargados. Por favor ingresar otro valor.')
+                else:
+                    tipo_sort = int(input('Ingrese 1 para selection, 2 para insertion, 3 para shell, 4 para quick y 5 para merge: '))
+                    result = controller.sortVideos(listaFiltrada, n_videos, tipo_sort)
+                    print('Cargando información de videos con más likes...')
+                    print('Se cargaron en un tiempo de: ' + str(result[0]) + " ms")
+            else:
+
+                print('El país no existe')
         else:
-            tipo_sort = int(input('Ingrese 1 para selection, 2 para insertion, 3 para shell, 4 para quick y 5 para merge: '))
-            result = controller.sortVideos(catalog['videos'], n_videos, tipo_sort)
-            print('Cargando información de videos con más likes...')
-            print('Se cargaron en un tiempo de: ' + str(result[0]) + " ms")
+            print('La categoría ingresada no existe')
+
+    elif int(inputs[0]) == 4:
+        category_name = input('Ingrese la categoría deseada: ')
+        if controller.buscarCategoria(catalog, category_name) == True:
+            id = obtenerIdCategoria(catalog, category_name)
+            listaFiltrada = controller.filtrarRequerimiento3(catalog, id)
+            print("Se cargaron ", lt.size(listaFiltrada))
+            print(listaFiltrada)
+    
+    elif int(inputs[0]) == 5:
+        
 
 
+
+        
     else:
         sys.exit(0)
 sys.exit(0)
