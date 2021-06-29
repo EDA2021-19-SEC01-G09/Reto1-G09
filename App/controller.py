@@ -76,8 +76,14 @@ def buscarCategoria(catalog, categoria):
 def filtrarRequerimiento1(catalog, categoria, country):
     return model.filtrarRequerimiento1(catalog, categoria, country)
 
+def filtrarRequerimiento2(catalog, country):
+    return model.filtrarRequerimiento2(catalog, country)
+
 def filtrarRequerimiento3(catalog, categoria):
     return model.filtrarRequerimiento3(catalog, categoria)
+
+def filtrarRequerimiento4(catalog, country, tag):
+    return model.filtrarRequerimiento4(catalog, country, tag)
 
 
 # Funciones de ordenamiento
@@ -88,7 +94,20 @@ def sortVideos(catalog, n_videos):
     """ 
     return model.sortVideos(catalog, n_videos)
 
+def sortComentarios(catalog, n_videos):
+    """
+    Ordena los videos por Comentarios
+    """ 
+    return model.sortVideos(catalog, n_videos)
+
+def sortDias(catalog):
+    return model.sortDias(catalog)
+
+
 # Funciones de consulta sobre el catálogo
 
 def buscarPais(catalog, pais):
     return model.buscarPais(catalog, pais)
+
+def buscarTag(catalog, tag):
+    return model.buscarTag(catalog, tag)
