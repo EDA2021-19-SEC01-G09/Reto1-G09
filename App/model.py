@@ -205,7 +205,7 @@ def sortVideos(catalog, size):
     sub_list2 = lt.subList(sorted_list, 1, size)
     return sub_list2
 
-   def sortComentarios(catalog, size):
+def sortComentarios(catalog, size):
     sub_list = lt.subList(catalog, 1, lt.size(catalog))
     sub_list = sub_list.copy()
     sorted_list = ms.sort(sub_list, cmpVideosByComments)    
