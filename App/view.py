@@ -149,22 +149,50 @@ while True:
         else:
             print('La categoría ingresada no existe')
 
+    elif int(inputs[0]) == 3:
+        country = input('Ingrese el pais deseado: ')
+        if controller.buscarPais(catalog, country) == True:
+            listaFiltrada = controller.filtrarRequerimiento2(catalog, country)
+            print("Se cargaron ", lt.size(listaFiltrada))
+            result = controller.sortDias(listaFiltrada)
+            print(printResultsReq2(result))
+        else:
+            print('El país ingresado no existe.')
+
     elif int(inputs[0]) == 4:
         category_name = input('Ingrese la categoría deseada: ')
         if controller.buscarCategoria(catalog, category_name) == True:
             id = obtenerIdCategoria(catalog, category_name)
             listaFiltrada = controller.filtrarRequerimiento3(catalog, id)
             print("Se cargaron ", lt.size(listaFiltrada))
-            print(listaFiltrada)
-    
-    elif int(inputs[0]) == 5:
-        pass
-
-
-
+            result = controller.sortDias(listaFiltrada)
+            print(printResultsReq3(result))
+        else:
+            print('La categoría ingresada no existe.')
         
+    elif int(inputs[0]) == 5:
+        country = input('Ingrese el pais: ')
+        if controller.buscarPais(catalog, country) == True:
+            tag = str(input('Ingrese el tag: '))
+
+            if controller.buscarTag(catalog, tag) == True:
+                listaFiltrada = controller.filtrarRequerimiento4(catalog, country, tag)
+                print("Se cargaron ", lt.size(listaFiltrada))
+                n_videos = int(input('Ingrese el número de videos que quiere listar: '))
+
+                if n_videos > lt.size(listaFiltrada):
+                    print('La sublista deseada excede el número de elementos cargados. Por favor ingresar otro valor.')
+
+                else:
+                    result = controller.sortComentarios(listaFiltrada, n_videos)
+                    print('Cargando información de videos con más likes...')
+                    print(printResultsReq4(result, n_videos))
+            else:
+                print('El tag no existe')
+        else:
+            print('El país no existe.')
+
+
     else:
         sys.exit(0)
 sys.exit(0)
-
-#x
