@@ -104,6 +104,28 @@ def printResultsReq1(ord_videos, n_videos):
             i += 1
     return ""
 
+def printResultsReq2(ord_videos):
+    video = lt.getElement(ord_videos, 1)
+    print('País: ' + video['country'] + ' Título: ' + video['title'] + ' Nombre del canal: ' + video['channel_title'] + ' Relación likes/dislikes: ' + str(video['ratio_likes_dislikes']) + ' Días: ' + str(video['dias']))      
+    return ""
+
+def printResultsReq3(ord_videos):
+    video = lt.getElement(ord_videos, 1)
+    print('Categoría: ' + video['category_id'] + ' Título: ' + video['title'] + ' Nombre del canal: ' + video['channel_title'] + ' Relación likes/dislikes: ' + str(video['ratio_likes_dislikes']) + ' Días: ' + str(video['dias']))      
+    return ""
+
+def printResultsReq4(ord_videos, n_videos):
+    size = lt.size(ord_videos)
+    if size >= n_videos:
+        print("Los ", n_videos, " videos con más comentarios son: ")
+        i = 1
+        while i <= (n_videos):
+            video = lt.getElement(ord_videos, i)
+            print('Comentarios: ' + video['comment_count'] + ' Título: ' +
+            video['title'] + ' Nombre del canal: ' + video['channel_title'] + ' Fecha publicación: ' + video['publish_time'] + ' Vistas: ' + video['views'] + ' Likes: ' + video['likes'] + ' Dislikes: ' + video['dislikes'] + ' Tags: ' + video['tags'])
+            i += 1
+    return ""
+   
 catalog = None
 
 
