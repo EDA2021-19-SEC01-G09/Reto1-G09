@@ -93,17 +93,28 @@ def filtrarRequerimiento3(catalog, categoria):
     listaFiltrada = lt.newList()
     for i in range(0, lt.size(catalog['videos'])):
         elementos = lt.getElement(catalog['videos'], i)
-        likes = int(elementos['likes'])
-        dislikes = int(elementos['dislikes'])
-        if dislikes == 0:
-            dislikes = 1
         if elementos['category_id'] == categoria:
-            if elementos['dislikes']: 
-                if int(elementos['likes']) / int(elementos['dislikes']) > 20:
-                    elementos['frec'] = 1
-                    lt.addLast(listaFiltrada, elementos)
-    return listaFiltrada
+            dislikes = int(elementos['dislikes'])
+            if dislikes == 0:
+                dislikes = 1
+            if int(elementos['likes']) / dislikes > 20:
+                elementos['dias'] = 1
+                lt.addLast(listaFiltrada, elementos)
+        cpListaFiltrada = listaFiltrada.copy()
+    return arreglarDays(cpListaFiltrada)
 
+def arreglarDays(lst):
+    #listaFiltrada = lt.newList()
+    for i in range(0, lt.size(lst) - 1):
+        elemento_1 = lt.getElement(lst, i)
+        id_1 = elemento_1['video_id']
+        for j in range(i + 1, lt.size(lst)):
+            elemento_2 = lt.getElement(lst, j)
+            id_2 = elemento_2['video_id']
+            if id_1 == id_2:
+                elemento_1['dias'] += 1
+                lt.deleteElement(lst, j)
+    return coplst
 
 # Funciones de consulta
 
@@ -116,7 +127,6 @@ def buscarPais(catalog, pais):
             falso = True
             break
     return falso
-
 
 # Funciones utilizadas para comparar elementos dentro de una lista
 
