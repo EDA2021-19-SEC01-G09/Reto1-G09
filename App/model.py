@@ -44,7 +44,7 @@ los mismos.
 
 # Construccion de modelos
 
-def newCatalog(tipo_lista):
+def newCatalog():
 
     """
     Inicializa el catálogo de videos. Crea una lista vacia para guardar
@@ -53,8 +53,8 @@ def newCatalog(tipo_lista):
     catalog = {'videos': None,
             'categorias': None}
 
-    catalog['videos'] = lt.newList(tipo_lista)
-    catalog['categorias'] = lt.newList(tipo_lista, cmpfunction = compararCategorias)
+    catalog['videos'] = lt.newList("ARRAY_LIST")
+    catalog['categorias'] = lt.newList("ARRAY_LIST", cmpfunction = compararCategorias)
     
     return catalog
 
@@ -98,14 +98,24 @@ def filtrarRequerimiento3(catalog, categoria):
         if dislikes == 0:
             dislikes = 1
         if elementos['category_id'] == categoria:
-            if elementos['dislikes'] 
-            if int(elementos['likes']) / int(elementos['dislikes']) > 20:
-                elementos['frec'] = 1
-                lt.addLast(listaFiltrada, elementos)
+            if elementos['dislikes']: 
+                if int(elementos['likes']) / int(elementos['dislikes']) > 20:
+                    elementos['frec'] = 1
+                    lt.addLast(listaFiltrada, elementos)
     return listaFiltrada
 
 
 # Funciones de consulta
+
+def buscarPais(catalog, pais): 
+    falso = False
+    for i in range(0, lt.size(catalog['videos'])):
+        elemento = lt.getElement(catalog['videos'],i)
+        verificar = (elemento['country'] == pais)
+        if verificar == True:
+            falso = True
+            break
+    return falso
 
 
 # Funciones utilizadas para comparar elementos dentro de una lista
@@ -127,20 +137,11 @@ def cmpVideosByLikes(video1, video2):
 
     # Funciones de ordenamiento
 
-def sortVideos(catalog, size, tipo_sort):
-    sub_list = lt.subList(catalog, 1, size)
+def sortVideos(catalog, size):
+    sub_list = lt.subList(catalog, 1, lt.size(catalog))
     sub_list = sub_list.copy()
-    start_time = time.process_time()
-    if tipo_sort == 1:      
-        sorted_list = sn.sort(sub_list, cmpVideosByLikes)
-    elif tipo_sort == 2:      
-        sorted_list = nn.sort(sub_list, cmpVideosByLikes)
-    elif tipo_sort == 3:      
-        sorted_list = sa.sort(sub_list, cmpVideosByLikes)
-    elif tipo_sort == 4:
-        sorted_list = qs.sort(sub_list, cmpVideosByLikes)
-    elif tipo_sort == 5:
-        sorted_list = ms.sort(sub_list, cmpVideosByLikes)    
-    stop_time = time.process_time()
-    elapsed_time_mseg = (stop_time - start_time)*1000
-    return (round(elapsed_time_mseg, 2), sorted_list)
+    sorted_list = ms.sort(sub_list, cmpVideosByLikes)    
+    sub_list2 = lt.subList(sorted_list, 1, size)
+    return sub_list2
+
+
