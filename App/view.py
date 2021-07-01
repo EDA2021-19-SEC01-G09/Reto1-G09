@@ -149,12 +149,12 @@ while True:
 
     elif int(inputs[0]) == 2:
         category_name = input('Ingrese la categoría deseada: ')
-        if controller.buscarCategoria(catalog, category_name) == True:
-            id = obtenerIdCategoria(catalog, category_name)
+        if controller.buscarCategoria(catalog, category_name) == True: #O(1)
+            id = obtenerIdCategoria(catalog, category_name) #O(n)
             country = input('Ingrese el país deseado: ')
 
-            if controller.buscarPais(catalog, country) == True:
-                listaFiltrada = controller.filtrarRequerimiento1(catalog, id, country)
+            if controller.buscarPais(catalog, country) == True: #O(n)
+                listaFiltrada = controller.filtrarRequerimiento1(catalog, id, country) #O(n)
                 print("Se cargaron ", lt.size(listaFiltrada))
                 n_videos = int(input('Ingrese el número de videos que quiere listar: '))
 
@@ -162,9 +162,9 @@ while True:
                     print('La sublista deseada excede el número de elementos cargados. Por favor ingresar otro valor.')
 
                 else:
-                    result = controller.sortVideos(listaFiltrada, n_videos)
+                    result = controller.sortVideos(listaFiltrada, n_videos) #O(nlog(n))
                     print('Cargando información de videos con más likes...')
-                    print(printResultsReq1(result, n_videos))
+                    print(printResultsReq1(result, n_videos)) #O(n)
 
             else:
                 print('El país no existe')
@@ -173,32 +173,32 @@ while True:
 
     elif int(inputs[0]) == 3:
         country = input('Ingrese el pais deseado: ')
-        if controller.buscarPais(catalog, country) == True:
-            listaFiltrada = controller.filtrarRequerimiento2(catalog, country)
+        if controller.buscarPais(catalog, country) == True: #O(n)
+            listaFiltrada = controller.filtrarRequerimiento2(catalog, country) #O(n)
             print("Se cargaron ", lt.size(listaFiltrada))
-            result = controller.sortDias(listaFiltrada)
-            print(printResultsReq2(result))
+            result = controller.sortDias(listaFiltrada) #O(nlog(n))
+            print(printResultsReq2(result)) #O(1)
         else:
             print('El país ingresado no existe.')
 
     elif int(inputs[0]) == 4:
         category_name = input('Ingrese la categoría deseada: ')
-        if controller.buscarCategoria(catalog, category_name) == True:
-            id = obtenerIdCategoria(catalog, category_name)
-            listaFiltrada = controller.filtrarRequerimiento3(catalog, id)
+        if controller.buscarCategoria(catalog, category_name) == True: #O(1)
+            id = obtenerIdCategoria(catalog, category_name) #O(n)
+            listaFiltrada = controller.filtrarRequerimiento3(catalog, id) #O(n)
             print("Se cargaron ", lt.size(listaFiltrada))
-            result = controller.sortDias(listaFiltrada)
-            print(printResultsReq3(result))
+            result = controller.sortDias(listaFiltrada) #O(nlog(n))
+            print(printResultsReq3(result)) #O(1)
         else:
             print('La categoría ingresada no existe.')
         
     elif int(inputs[0]) == 5:
         country = input('Ingrese el pais: ')
-        if controller.buscarPais(catalog, country) == True:
+        if controller.buscarPais(catalog, country) == True: #O(n)
             tag = str(input('Ingrese el tag: '))
 
-            if controller.buscarTag(catalog, tag) == True:
-                listaFiltrada = controller.filtrarRequerimiento4(catalog, country, tag)
+            if controller.buscarTag(catalog, tag) == True: #O(n)
+                listaFiltrada = controller.filtrarRequerimiento4(catalog, country, tag) #O(n)
                 print("Se cargaron ", lt.size(listaFiltrada))
                 n_videos = int(input('Ingrese el número de videos que quiere listar: '))
 
@@ -206,9 +206,9 @@ while True:
                     print('La sublista deseada excede el número de elementos cargados. Por favor ingresar otro valor.')
 
                 else:
-                    result = controller.sortComentarios(listaFiltrada, n_videos)
+                    result = controller.sortComentarios(listaFiltrada, n_videos) #O(nlog(n))
                     print('Cargando información de videos con más likes...')
-                    print(printResultsReq4(result, n_videos))
+                    print(printResultsReq4(result, n_videos)) #O(n)
             else:
                 print('El tag no existe')
         else:

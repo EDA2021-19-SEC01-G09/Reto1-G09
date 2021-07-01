@@ -72,15 +72,6 @@ def addCategoria(catalog, categoria):
 
 # Funciones para creacion de datos
 
-def buscarCategoria(catalog, categoria):
-    """
-    Retorna un autor con sus libros a partir del nombre del autor
-    """
-    if lt.isPresent(catalog['categorias'], categoria) > 0:
-        return True
-    else:
-        return False
-
 def filtrarRequerimiento1(catalog, categoria, country):
     listaFiltrada = lt.newList()
     for i in range(0, lt.size(catalog['videos'])):
@@ -99,7 +90,7 @@ def filtrarRequerimiento2(catalog, country):
             dislikes = 1
         ratio = int(elementos['likes']) / dislikes
         if ratio > 10:
-            elementos['ratio_likes_dislikes'] = ratio
+            elementos['ratio_likes_dislikes'] = round(ratio, 2)
             if elementos['country'] == country and elementos['video_id'] != '#NAME?' and not(elementos['video_id'] in revisar.keys()):
                 revisar[elementos['video_id']] = 1
                 elementos['dias'] = 1
@@ -122,7 +113,7 @@ def filtrarRequerimiento3(catalog, categoria):
             dislikes = 1
         ratio = int(elementos['likes']) / dislikes
         if ratio > 20:
-            elementos['ratio_likes_dislikes'] = ratio
+            elementos['ratio_likes_dislikes'] = round(ratio, 2)
             if elementos['category_id'] == categoria and elementos['video_id'] != '#NAME?' and not(elementos['video_id'] in revisar.keys()):
                 revisar[elementos['video_id']] = 1
                 elementos['dias'] = 1
@@ -143,6 +134,15 @@ def filtrarRequerimiento4(catalog, country, tag):
     return listaFiltrada
 
 # Funciones de consulta
+
+def buscarCategoria(catalog, categoria):
+    """
+    Retorna un autor con sus libros a partir del nombre del autor
+    """
+    if lt.isPresent(catalog['categorias'], categoria) > 0:
+        return True
+    else:
+        return False
 
 def buscarPais(catalog, pais): 
     falso = False
