@@ -57,7 +57,7 @@ def loadData(catalog):
     """
     Carga los videos en la estructura de datos
     """
-    controller.loadData(catalog)
+    return controller.loadData(catalog)
 
 def filtrarCatalogo(catalog):
     """
