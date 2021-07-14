@@ -140,12 +140,15 @@ while True:
     if int(inputs[0]) == 1:
         print("Cargando información de los archivos ....")
         catalog = initCatalog()
-        loadData(catalog)
+        answer = loadData(catalog)
         print('Videos cargados: ' + str(lt.size(catalog['videos']))) 
         print('Filtered Dictionary: ')
         print(filtrarCatalogo(catalog))
         print('Categorías cargadas: ')
         iterarCategorias(catalog)
+        print(answer)
+        #print("Tiempo [ms]: ", f"{answer[0]:.3f}", "  ||  ",
+        #      "Memoria [kB]: ", f"{answer[1]:.3f}")
 
     elif int(inputs[0]) == 2:
         category_name = input('Ingrese la categoría deseada: ')
