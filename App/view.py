@@ -146,9 +146,8 @@ while True:
         print(filtrarCatalogo(catalog))
         print('Categorías cargadas: ')
         iterarCategorias(catalog)
-        print(answer)
-        #print("Tiempo [ms]: ", f"{answer[0]:.3f}", "  ||  ",
-        #      "Memoria [kB]: ", f"{answer[1]:.3f}")
+        print("Tiempo [ms]: ", f"{answer[0]:.3f}", "  ||  ",
+              "Memoria [kB]: ", f"{answer[1]:.3f}")
 
     elif int(inputs[0]) == 2:
         category_name = input('Ingrese la categoría deseada: ')
@@ -157,7 +156,8 @@ while True:
             country = input('Ingrese el país deseado: ')
 
             if controller.buscarPais(catalog, country) == True: #O(n)
-                listaFiltrada = controller.filtrarRequerimiento1(catalog, id, country) #O(n)
+                tupla = controller.filtrarRequerimiento1(catalog, id, country) #O(n)
+                listaFiltrada = tupla[0]
                 print("Se cargaron ", lt.size(listaFiltrada))
                 n_videos = int(input('Ingrese el número de videos que quiere listar: '))
 
@@ -168,6 +168,8 @@ while True:
                     result = controller.sortVideos(listaFiltrada, n_videos) #O(nlog(n))
                     print('Cargando información de videos con más likes...')
                     print(printResultsReq1(result, n_videos)) #O(n)
+                    print("Tiempo [ms]: ", f"{tupla[1]:.3f}", "  ||  ",
+                            "Memoria [kB]: ", f"{tupla[2]:.3f}")
 
             else:
                 print('El país no existe')
@@ -177,10 +179,13 @@ while True:
     elif int(inputs[0]) == 3:
         country = input('Ingrese el pais deseado: ')
         if controller.buscarPais(catalog, country) == True: #O(n)
-            listaFiltrada = controller.filtrarRequerimiento2(catalog, country) #O(n)
+            tupla = controller.filtrarRequerimiento2(catalog, country) #O(n)
+            listaFiltrada = tupla[0]
             print("Se cargaron ", lt.size(listaFiltrada))
             result = controller.sortDias(listaFiltrada) #O(nlog(n))
             print(printResultsReq2(result)) #O(1)
+            print("Tiempo [ms]: ", f"{tupla[1]:.3f}", "  ||  ",
+                            "Memoria [kB]: ", f"{tupla[2]:.3f}")
         else:
             print('El país ingresado no existe.')
 
@@ -188,10 +193,13 @@ while True:
         category_name = input('Ingrese la categoría deseada: ')
         if controller.buscarCategoria(catalog, category_name) == True: #O(1)
             id = obtenerIdCategoria(catalog, category_name) #O(n)
-            listaFiltrada = controller.filtrarRequerimiento3(catalog, id) #O(n)
+            tupla = controller.filtrarRequerimiento3(catalog, id) #O(n)
+            listaFiltrada = tupla[0]
             print("Se cargaron ", lt.size(listaFiltrada))
             result = controller.sortDias(listaFiltrada) #O(nlog(n))
             print(printResultsReq3(result)) #O(1)
+            print("Tiempo [ms]: ", f"{tupla[1]:.3f}", "  ||  ",
+                            "Memoria [kB]: ", f"{tupla[2]:.3f}")
         else:
             print('La categoría ingresada no existe.')
         
@@ -201,7 +209,8 @@ while True:
             tag = str(input('Ingrese el tag: '))
 
             if controller.buscarTag(catalog, tag) == True: #O(n)
-                listaFiltrada = controller.filtrarRequerimiento4(catalog, country, tag) #O(n)
+                tupla = controller.filtrarRequerimiento4(catalog, country, tag) #O(n)
+                listaFiltrada = tupla[0]
                 print("Se cargaron ", lt.size(listaFiltrada))
                 n_videos = int(input('Ingrese el número de videos que quiere listar: '))
 
@@ -212,6 +221,8 @@ while True:
                     result = controller.sortComentarios(listaFiltrada, n_videos) #O(nlog(n))
                     print('Cargando información de videos con más likes...')
                     print(printResultsReq4(result, n_videos)) #O(n)
+                    print("Tiempo [ms]: ", f"{tupla[1]:.3f}", "  ||  ",
+                            "Memoria [kB]: ", f"{tupla[2]:.3f}")
             else:
                 print('El tag no existe')
         else:
